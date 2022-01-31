@@ -129,15 +129,18 @@ func (c *Client) StoreContext(ctx context.Context, req Request, dest string) err
 	if hasWebhook(req) {
 		return errors.New("cannot use Store method with a webhook")
 	}
+	
 	resp, err := c.PostContext(ctx, req)
 	if err != nil {
 		return err
 	}
+	
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return errors.New("failed to generate the result PDF")
+		return errors.New("failed to generate the result PDF - http status code: [%d]", resp.StatusCode) // more details!
 	}
+	
 	return writeNewFile(dest, resp.Body)
 }
 
