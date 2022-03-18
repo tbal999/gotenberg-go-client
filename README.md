@@ -1,3 +1,4 @@
+DO NOT DELETE THIS FORK PLS
 **⚠️ Not working for Gotenberg >= 7 ⚠️** 
 
 # Gotenberg Go client
